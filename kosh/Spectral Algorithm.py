@@ -7,7 +7,7 @@ from sklearn.cluster import KMeans
 # In[170]:
 
 
-data_file = 'data/ca-HepTh.txt'
+data_file = 'data/ca-HepPh.txt'
 
 
 
@@ -118,7 +118,7 @@ def least_significat_eigens(k, eig_values, eig_vectors):
     return eig_vectors, eig_values
 
 
-num_eigens = 20
+num_eigens = 25
 least_vectors, least_values = least_significat_eigens(num_eigens, eig_values, eig_vectors)
 
 least_values = least_values.real
@@ -128,11 +128,10 @@ least_vectors = least_vectors.real
 # In[163]:
 
 
-least_values
 
 
 
-num_clusters = 20
+num_clusters = 25
 
 kmeans = KMeans(
     n_clusters = num_clusters, 
@@ -145,5 +144,5 @@ kmeans.fit(least_vectors)
 
 df = pd.DataFrame({'node' : combined_nodes, 'cluster' : kmeans.labels_})
 df = df[['node', 'cluster']]
-df.to_csv('output/ca-GrQc.output', index = False, sep = ' ')
+df.to_csv('output/ca-HepPh.output', index = False, sep = ' ')
 
